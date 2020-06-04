@@ -4,11 +4,20 @@ while True:
     if name == 'q':
         break
     price = input('请输入厂品价格：')
-    p = []
-    p.append(name) # comprehensive list "p = [name, price]" = p=[];p.append(name);p.append(price)
-    p.append(price)
-    products.append(p) #把 p 加入 products 大清单
+    price = int(price)
+    products.append([name, price]) 
 print(products)    
 
-for product in products:   # for loop 的定义是 products 中一个一个那出来
-	print(product[0], '的价格是', product[1])
+for p in products:   # for loop 的定义是 products 中一个一个那出来
+	print(p[0], '的价格是', p[1])
+
+
+
+with open('products.csv', 'w', encoding ='utf-8') as f: # write (w) 写入模式, 如果没有 products.txt or csv file 没关系
+	f.write('商品, 价格\n')
+	for p in products:          # read (r) 读取模式
+		f.write(p[0] + ',' + str(p[1]) + '\n') #.write 是写入
+
+
+
+
