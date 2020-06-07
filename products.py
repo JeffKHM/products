@@ -1,13 +1,21 @@
-#读取档案
+import os # operating system
+
 products = []
-with open('products.csv', 'r', encoding='utf-8') as f:
-    for line in f:
-        if '商品,价格' in line:# if '商品,价格' in line:
-            continue  #   continue # 继续 如果在 line 里面就跳下一回继续
+if os.path.isfile('products.csv'): # isfile 是捡查文件products.csv在不在
+    print('yeah! 找到文件了！')     
+    with open('products.csv', 'r', encoding='utf-8') as f: #读取档案
+        for line in f:
+            if '商品,价格' in line:# if '商品,价格' in line:
+                continue  #   continue # 继续 如果在 line 里面就跳下一回继续
         name, price = line.strip().split(',')
         products.append([name, price])
+    print(products)
+else:
+    print('找不到文件。。。。。')
 
-print(products)
+
+
+
 
 #让使用者输入
 while True:
